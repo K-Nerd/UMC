@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UMC Study Plan - ToDo List</title>
+  <style>
+    body {
+      background: #f2f6fa;
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input#task-input {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border: 2px solid #3b82f6;
+      border-radius: 4px;
+      outline: none;
+    }
+    input#task-input:focus {
+      border-color: #2563eb;
+    }
+    .lists {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    .list {
+      width: 48%;
+    }
+    .list h2 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 4px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      background: #fff;
+      padding: 10px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    li span {
+      word-break: break-all;
+    }
+    .btn {
+      background: #e2e8f0;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .btn:hover {
+      background: #cbd5e1;
+    }
+    .btn.complete {
+      background: #34d399;
+      color: #fff;
+    }
+    .btn.complete:hover {
+      background: #10b981;
+    }
+    .btn.delete {
+      background: #f87171;
+      color: #fff;
+    }
+    .btn.delete:hover {
+      background: #ef4444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>UMC Study Plan</h1>
+    <input id="task-input" type="text" placeholder="스터디 계획을 작성해보세요!">
+    <div class="lists">
+      <div class="list pending">
+        <h2>해야 할 일</h2>
+        <ul id="todo-list"></ul>
+      </div>
+      <div class="list done">
+        <h2>해낸 일</h2>
+        <ul id="done-list"></ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    const input = document.getElementById('task-input');
+    const todoUl = document.getElementById('todo-list');
+    const doneUl = document.getElementById('done-list');
+
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && this.value.trim()) {
+        addTodo(this.value.trim());
+        this.value = '';
+      }
+    });
+
+    function addTodo(text) {
+      const li = document.createElement('li');
+      const span = document.createElement('span');
+      span.textContent = text;
+
+      const btn = document.createElement('button');
+      btn.textContent = '완료';
+      btn.className = 'btn complete';
+      btn.addEventListener('click', () => moveToDone(li, text));
+
+      li.append(span, btn);
+      // 새 항목을 목록 최상단에
+      todoUl.prepend(li);
+    }
+
+    function moveToDone(itemLi, text) {
+      const li = document.createElement('li');
+      const span = document.createElement('span');
+      span.textContent = text;
+
+      const btn = document.createElement('button');
+      btn.textContent = '삭제';
+      btn.className = 'btn delete';
+      btn.addEventListener('click', () => li.remove());
+
+      li.append(span, btn);
+      doneUl.prepend(li);
+      // 원래 항목 제거
+      itemLi.remove();
+    }
+  </script>
+</body>
+</html>
