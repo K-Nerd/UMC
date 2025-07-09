@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMUMC 레이아웃 미션2</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: sans-serif; }
+
+    /* Header 영역 */
+    .header { display: flex; }
+    .header-item {
+      flex: 1;
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+    }
+    .header-item:first-child { background: #000; }
+    .header-item:last-child  { background: #E63946; }
+
+    /* Hero 섹션 */
+    .hero { display: flex; justify-content: center; align-items: center;
+             background: #457B9D; color: #fff; padding: 80px 0; font-size: 2rem; }
+
+    /* Content 영역: Main, Blank, Sidebar 활용 */
+    .content { display: grid; grid-template-columns: 2fr 1fr 1fr; min-height: 300px; }
+    .main { background: #1D2951; display: flex; justify-content: center;
+             align-items: center; color: #fff; font-size: 2rem; }
+    .blank { background: #fff; }
+    .sidebar { display: grid; grid-template-rows: 1fr 1fr; }
+    .image { background: #BEE9E8; display: flex; justify-content: center;
+              align-items: center; font-size: 1.5rem; }
+    .extra { background: #2A9D8F; display: flex; justify-content: center;
+              align-items: center; font-size: 1.5rem; }
+
+    /* Banner/Footer 영역 */
+    .banner { display: flex; justify-content: center; align-items: center;
+               background: #FFCB77; padding: 30px; color: #000; font-size: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-item">HEADER</div>
+    <div class="header-item">MENU</div>
+  </div>
+
+  <div class="hero">HERO</div>
+
+  <div class="content">
+    <div class="main">MAIN</div>
+    <div class="blank"></div>
+    <div class="sidebar">
+      <div class="image">IMAGE</div>
+      <div class="extra">EXTRA</div>
+    </div>
+  </div>
+
+  <div class="banner">BANNER</div>
+</body>
+</html>
