@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UMC Study Plan - ToDo List</title>
+  <title>TO-DO List</title>
   <style>
     body {
       background: #f2f6fa;
       font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
     }
     .container {
       max-width: 600px;
@@ -127,8 +128,8 @@
       btn.addEventListener('click', () => moveToDone(li, text));
 
       li.append(span, btn);
-      // 새 항목을 목록 최상단에
-      todoUl.prepend(li);
+      // 오름차순 -> 해야 할 일 목록
+      todoUl.append(li);
     }
 
     function moveToDone(itemLi, text) {
@@ -142,8 +143,8 @@
       btn.addEventListener('click', () => li.remove());
 
       li.append(span, btn);
-      doneUl.prepend(li);
-      // 원래 항목 제거
+      // 오름차순 -> 완료 목록
+      doneUl.append(li);
       itemLi.remove();
     }
   </script>
